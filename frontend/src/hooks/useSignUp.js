@@ -10,7 +10,7 @@ export const useSignUp = () => {
         setLoading(true);
         setError(null);
 
-        const response = await fetch('/api/user/signup', {
+        const response = await fetch('/api/auth/signup', {  // ✅ Correct route
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, email, password })
@@ -23,12 +23,8 @@ export const useSignUp = () => {
             setError(json.error);
         }
         if (response.ok) {
-            // Save to local storage
             localStorage.setItem('user', JSON.stringify(json));
-
-            // Update auth context
             dispatch({ type: 'LOGIN', payload: json });
-
             setLoading(false);
         }
     };
