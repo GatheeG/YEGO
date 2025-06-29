@@ -26,6 +26,12 @@ const port = process.env.PORT || 5000;
 app.use('/api/workouts', workoutsRouter);
 app.use("/api/auth", authRouter);
 
+
+app.use((req,res)=>{
+    res.send("API is running");
+})
+
+
 // Default Route
 app.get('/', (req, res) => {
     res.json({ message: 'Welcome to the app' });
